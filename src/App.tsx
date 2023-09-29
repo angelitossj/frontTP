@@ -68,15 +68,15 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         const newclientes = data.map((datos) => ({
           fecha: datos.fecha,
-          nombre:datos.nombreProducto,
-          cliente:datos.clienteProducto,
+          nombre:datos.idProducto.nombre,
+          cliente:datos.idCliente.nombre,
           cantidad:datos.cantidad,
-          totalDeLaCompra:datos.totalCompra
+          totalDeLaCompra:datos.total
         }));
         setVentas(newclientes);
-        console.log(ventas)
       } else {
         console.log(`Error de red: ${response.status}`);
       }
@@ -137,7 +137,7 @@ function App() {
                   <td>{venta.nombre}</td>
                   <td>{venta.cliente}</td>
                   <td>{venta.cantidad}</td>
-                  <td>{venta.totalDeLaCompra}</td>
+                  <td>${venta.totalDeLaCompra}</td>
                 </tr>
               ))}
             </tbody>
